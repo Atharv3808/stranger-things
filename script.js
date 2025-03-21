@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Countdown Timer
   const countdownElement = document.getElementById('countdown');
   if (countdownElement) {
-    const eventDate = new Date('March 25, 2025 00:00:00').getTime();
+    const eventDate = new Date('April 3, 2025 00:00:00').getTime();
     
     // Update the countdown every second
     const countdownTimer = setInterval(function() {
@@ -839,3 +839,41 @@ document.head.insertAdjacentHTML('beforeend', `
     }
   </style>
 `);
+// Add this at the beginning of your DOMContentLoaded event listener
+document.addEventListener('DOMContentLoaded', function() {
+  // Loader functionality
+  const loader = document.querySelector('.loader-container');
+  
+  // Hide loader after content is loaded
+  window.addEventListener('load', function() {
+    // Add a slight delay for dramatic effect
+    setTimeout(function() {
+      loader.classList.add('loader-hidden');
+      
+      // Enable scrolling on body after loader is hidden
+      document.body.style.overflow = 'auto';
+      
+      // Remove loader from DOM after transition completes
+      loader.addEventListener('transitionend', function() {
+        if (loader.classList.contains('loader-hidden')) {
+          loader.remove();
+        }
+      });
+    }, 1500); // 1.5 second delay
+  });
+  
+  // Disable scrolling while loader is active
+  document.body.style.overflow = 'hidden';
+  
+  // Rest of your existing code...
+  
+  // Add data-text attribute to all glitch-hover elements
+  const glitchElements = document.querySelectorAll('.glitch-hover');
+  glitchElements.forEach(element => {
+    if (element.textContent) {
+      element.setAttribute('data-text', element.textContent);
+    }
+  });
+  
+  // ... rest of your existing code
+});
